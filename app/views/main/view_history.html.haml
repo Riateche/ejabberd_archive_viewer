@@ -9,12 +9,12 @@
     .list-group-item
       = form_tag set_alias_path, "class" => "form-inline" do
         %div
-          %b jid:
+          %b Jid:
           = jid
         %div
-          %b alias:
-          = hidden_field_tag('Jid', jid)
-          = text_field_tag('Alias', @alias, "class" => "form-control")
+          %b Alias:
+          = hidden_field_tag('jid', jid)
+          = text_field_tag('alias', @alias, "class" => "form-control")
           = submit_tag('Rename', "class" => "btn btn-default" )
 
 .search_from_history= render 'search_form'
