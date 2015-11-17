@@ -17,8 +17,9 @@ class MainController < ApplicationController
   end
 
   def set_alias
+    alias_ = params[:alias].gsub('/', '_')
     ViewerAlias.where(jid: params[:jid]).delete_all
-    ViewerAlias.create!(jid: params[:jid], alias: params[:alias])
+    ViewerAlias.create!(jid: params[:jid], alias: alias_)
     redirect_to root_path, notice: 'Renamed.'
   end
 
