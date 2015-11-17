@@ -1,0 +1,6 @@
+%h3 Users
+
+%ul
+  - @jids.each do |jid|
+    %li= link_to jid, view_history_path(jid)
+

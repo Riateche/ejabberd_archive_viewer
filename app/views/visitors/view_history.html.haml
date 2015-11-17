@@ -1,0 +1,7 @@
+%h3 History with #{params[:jid]}
+
+- @messages.each do |m|
+  .message
+    .direction= m.dir == 1 ? "→" : "←"
+    .time= m.utc
+    .text= m.body
