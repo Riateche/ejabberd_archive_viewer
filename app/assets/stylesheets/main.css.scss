@@ -1,0 +1,9 @@
+.message {
+  .time {
+    color: #888;
+
+  }
+  &.received {
+    background: #f0f0ff;
+  }
+}

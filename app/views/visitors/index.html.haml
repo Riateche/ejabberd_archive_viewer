@@ -1,6 +1,6 @@
 %h3 Users
 
-%ul
+.list-group
   - @jids.each do |jid|
-    %li= link_to jid, view_history_path(jid)
+    = link_to jid, view_history_path(jid), "class" => "list-group-item"
 
