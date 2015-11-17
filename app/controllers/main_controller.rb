@@ -1,4 +1,4 @@
-class VisitorsController < ApplicationController
+class MainController < ApplicationController
   def index
     @jids = Collection.where(us: Rails.application.secrets.jabber_user).pluck('with_user, with_server')
                 .uniq
