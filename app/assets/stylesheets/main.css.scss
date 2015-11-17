@@ -17,3 +17,11 @@ a.glyphicon {
   cursor: pointer;
   text-decoration: none;
 }
+.search_form {
+  padding: 20px 0;
+}
+.search_from_history {
+  .search_form {
+    display: none;
+  }
+}

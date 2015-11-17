@@ -1,0 +1,8 @@
+.messages.list-group
+  - @messages.each do |m|
+    .message.list-group-item{ "class" => m.dir == 1 ? "sent" : "received" }
+      %span.direction= m.dir == 1 ? "→" : "←"
+      &nbsp;&nbsp;&nbsp;
+      %span.time= m.utc
+      &nbsp;&nbsp;&nbsp;
+      %span.text= auto_link(m.body)

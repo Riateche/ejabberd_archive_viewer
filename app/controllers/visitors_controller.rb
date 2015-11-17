@@ -10,6 +10,26 @@ class VisitorsController < ApplicationController
   end
 
   def view_history
+    find_messages
+    per_page = 200
+    page = params[:page] || [((@messages.count - 1) / per_page) + 1, 1].max
+    @messages = @messages.paginate(page: page, per_page: per_page)
+  end
+
+  def set_alias
+    ViewerAlias.where(jid: params[:jid]).delete_all
+    ViewerAlias.create!(jid: params[:jid], alias: params[:alias])
+    redirect_to root_path, notice: 'Renamed.'
+  end
+
+  def search
+    find_messages
+    @messages = @messages.to_a.select{ |m| m.body.include?(params[:query])}
+  end
+
+  private
+
+  def find_messages
     @alias = params[:alias]
     @jids = ViewerAlias.to_jids(@alias)
     @jids = [@alias] unless @jids.any?
@@ -26,14 +46,7 @@ class VisitorsController < ApplicationController
     }.flatten
 
     @messages = Message.where(coll_id: collections).order('id')
-    per_page = 200
-    page = params[:page] || [((@messages.count - 1) / per_page) + 1, 1].max
-    @messages = @messages.paginate(page: page, per_page: per_page)
   end
 
-  def set_alias
-    ViewerAlias.where(jid: params[:jid]).delete_all
-    ViewerAlias.create!(jid: params[:jid], alias: params[:alias])
-    redirect_to root_path, notice: 'Renamed.'
-  end
+
 end

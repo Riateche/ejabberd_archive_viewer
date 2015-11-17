@@ -2,6 +2,7 @@
   History with
   =@alias
   %a.glyphicon.glyphicon-pencil.toggle_aliases_editor
+  %a.glyphicon.glyphicon-search.toggle_search_form
 
 .aliases.list-group
   - @jids.each do |jid|
@@ -12,17 +13,13 @@
           = jid
         %div
           %b alias:
-          = hidden_field_tag('jid', jid)
-          = text_field_tag('alias', @alias, "class" => "form-control")
+          = hidden_field_tag('Jid', jid)
+          = text_field_tag('Alias', @alias, "class" => "form-control")
           = submit_tag('Rename', "class" => "btn btn-default" )
 
-.messages.list-group
-  - @messages.each do |m|
-    .message.list-group-item{ "class" => m.dir == 1 ? "sent" : "received" }
-      %span.direction= m.dir == 1 ? "→" : "←"
-      &nbsp;&nbsp;&nbsp;
-      %span.time= m.utc
-      &nbsp;&nbsp;&nbsp;
-      %span.text= m.body
+.search_from_history= render 'search_form'
+
+= render 'message_list'
+
 
 = will_paginate @messages, renderer: BootstrapPagination::Rails

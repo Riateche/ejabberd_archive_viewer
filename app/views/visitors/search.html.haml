@@ -1,0 +1,7 @@
+%h3 Search results
+
+= render 'search_form'
+
+%p= link_to 'Back to history', view_history_path(alias: @alias)
+
+= render 'message_list'

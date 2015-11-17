@@ -1,0 +1,6 @@
+.search_form
+  = form_tag search_path(alias: @alias), "class" => "form-inline" do
+    %b Text:
+    = hidden_field_tag('alias', @alias)
+    = text_field_tag('query', params[:query], "class" => "form-control")
+    = submit_tag('Search', "class" => "btn btn-default" )
