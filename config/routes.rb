@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   root to: 'visitors#index'
-  get 'history/:jid' => 'visitors#view_history', as: :view_history, constraints: { jid: /[^\/]+/ }
+  get 'history/:alias' => 'visitors#view_history', as: :view_history, constraints: { alias: /[^\/]+/ }
+  post 'set_alias' => 'visitors#set_alias', as: :set_alias
 end

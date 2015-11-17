@@ -1,4 +1,11 @@
-%h3 History with #{params[:jid]}
+%h3 History with #{@alias}
+
+- @jids.each do |jid|
+  = form_tag set_alias_path do
+    jid: #{jid}; alias:
+    = hidden_field_tag('jid', jid)
+    = text_field_tag('alias', @alias)
+    = submit_tag('Rename')
 
 .messages.list-group
   - @messages.each do |m|

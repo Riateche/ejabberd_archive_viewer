@@ -2,5 +2,5 @@
 
 .list-group
   - @jids.each do |jid|
-    = link_to jid, view_history_path(jid), "class" => "list-group-item"
+    = link_to jid, view_history_path(alias: jid), "class" => "list-group-item"
 
