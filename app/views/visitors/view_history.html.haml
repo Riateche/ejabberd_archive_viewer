@@ -6,15 +6,15 @@
 .aliases.list-group
   - @jids.each do |jid|
     .list-group-item
-      = form_tag set_alias_path do
+      = form_tag set_alias_path, "class" => "form-inline" do
         %div
           %b jid:
           = jid
         %div
           %b alias:
           = hidden_field_tag('jid', jid)
-          = text_field_tag('alias', @alias)
-          = submit_tag('Rename')
+          = text_field_tag('alias', @alias, "class" => "form-control")
+          = submit_tag('Rename', "class" => "btn btn-default" )
 
 .messages.list-group
   - @messages.each do |m|
