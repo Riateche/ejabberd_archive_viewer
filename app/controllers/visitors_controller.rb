@@ -1,6 +1,6 @@
 class VisitorsController < ApplicationController
   def index
-    @jids = Collection.pluck('with_user, with_server')
+    @jids = Collection.where(us: Rails.application.secrets.jabber_user).pluck('with_user, with_server')
                 .uniq
                 .map{ |row| row.join("@") }
                 .map{ |jid| ViewerAlias.to_alias(jid) || jid }
@@ -18,7 +18,11 @@ class VisitorsController < ApplicationController
       if jid_parts.count != 2
         raise ActionController::RoutingError.new('invalid jid')
       end
-      Collection.where(with_user: jid_parts[0], with_server: jid_parts[1]).pluck('id')
+      Collection.where(
+          us: Rails.application.secrets.jabber_user,
+          with_user: jid_parts[0],
+          with_server: jid_parts[1]
+      ).pluck('id')
     }.flatten
 
     @messages = Message.where(coll_id: collections).order('id')
