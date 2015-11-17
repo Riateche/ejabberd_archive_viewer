@@ -7,3 +7,13 @@
     background: #f0f0ff;
   }
 }
+.aliases {
+  display: none;
+  .list-group-item {
+    display: inline-block;
+  }
+}
+a.glyphicon {
+  cursor: pointer;
+  text-decoration: none;
+}

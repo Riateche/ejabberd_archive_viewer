@@ -1,11 +1,20 @@
-%h3 History with #{@alias}
+%h3
+  History with
+  =@alias
+  %a.glyphicon.glyphicon-pencil.toggle_aliases_editor
 
-- @jids.each do |jid|
-  = form_tag set_alias_path do
-    jid: #{jid}; alias:
-    = hidden_field_tag('jid', jid)
-    = text_field_tag('alias', @alias)
-    = submit_tag('Rename')
+.aliases.list-group
+  - @jids.each do |jid|
+    .list-group-item
+      = form_tag set_alias_path do
+        %div
+          %b jid:
+          = jid
+        %div
+          %b alias:
+          = hidden_field_tag('jid', jid)
+          = text_field_tag('alias', @alias)
+          = submit_tag('Rename')
 
 .messages.list-group
   - @messages.each do |m|
